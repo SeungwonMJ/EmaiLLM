@@ -1,7 +1,7 @@
 # EmaiLLM
 CS 329 Project EmaiLLM: Bulk Cleanser
 
-EmailLLM: Bulk Cleanser is a project developed as part of the CS 329 course. It utilizes AI and Natural Language Processing (NLP) techniques to create an intelligent email filtering system. This project aims to classify and filter emails based on user-defined keywords and content relevance. Unwanted or irrelevant emails (bulk emails, spam, etc.) are automatically stored in a separate folder to help reduce clutter in the inbox.
+EmailLLM: Bulk Cleanser is a project developed as part of the CS 329 course. It utilizes AI and Natural Language Processing (NLP) techniques to create an intelligent email filtering system. This project aims to classify and filter emails based on user-defined keywords and content relevance. Unwanted or irrelevant emails (bulk emails) are automatically stored in a separate folder to help reduce clutter in the inbox.
 
 The project aims to improve email organization, save storage space, and reduce the time spent manually sorting unwanted emails.
 
