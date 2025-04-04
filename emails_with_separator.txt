@@ -1,0 +1,50 @@
+From: 'Flood, Brid' <brigid.noelle.flood@emory.edu>
+Subject: CS Topics Courses, Fall 25
+Date: March 24, 2025
+Dear CS Students,
+
+With registration just around the corner, I am writing to you with an overview of the topics courses (CS 485) that we have on offer for Fall 25. These are the only undergraduate courses that require permission codes for the coming semester, and you can request codes during the appropriate timeslot (see my email from 14 March entitled 'PLEASE READ CAREFULLY: Permission Code Distribution Schedule and Registration Info, Fall 25 Pre-Registration').
+
+CS 485/1: Spatial Computing
+- Prerequisite: CS 253
+- Spatial data is ubiquitous in many applications, e.g., map applications, agriculture, health, and transportation, and in different scientific disciplines, e.g., geographic information sciences, environmental sciences, and behavioral sciences. This course covers the main concepts behind the existing technologies in spatial computing and explores future directions where spatial data is driving innovations. The course starts by introducing spatial computing and geometric algorithms to handle spatial data including points, lines, and polygons.
+
+Best,
+Brid Flood
+Sr. Undergraduate Coordinator - Department of Computer Science
+Emory University
+
+Caleb_Kairos_Michael_Nate_STOP_EMAIL
+From: 'Smith, John' <john.smith@emory.edu>
+Subject: Internship Opportunity for CS Majors
+Date: March 25, 2025
+Dear CS Majors,
+
+We are excited to announce a paid internship opportunity with TechCorp for the Summer 2025. TechCorp is looking for talented Computer Science students to join their team and work on cutting-edge software development projects. The internship will provide hands-on experience in machine learning, cloud computing, and software engineering.
+
+The internship will run for 12 weeks, from June 1st to August 31st, 2025. Applicants should have experience in Python, Java, and machine learning frameworks. Interested candidates should submit their resumes to john.smith@techcorp.com by April 15, 2025.
+
+Best regards,
+John Smith
+Recruiter - TechCorp
+Caleb_Kairos_Michael_Nate_STOP_EMAIL
+From: 'University CS Club' <csclub@emory.edu>
+Subject: Join Us for the CS Club Spring Event!
+Date: March 25, 2025
+Dear CS Students,
+
+The Computer Science Club is hosting its Spring 2025 networking event next Friday, April 2nd, 2025. We will have a panel discussion with industry professionals from top tech companies like Google and Microsoft. Afterward, there will be a casual networking session with pizza and drinks.
+
+This is a great opportunity to learn more about the tech industry, connect with professionals, and hear about internship and full-time opportunities. We hope to see you there!
+
+Event Details:
+- Date: April 2nd, 2025
+- Time: 6:00 PM to 9:00 PM
+- Location: CS Department Lounge, Room 101
+
+Please RSVP via the link below:
+[RSVP Link]
+
+Best regards,
+CS Club President
+Caleb_Kairos_Michael_Nate_STOP_EMAIL
