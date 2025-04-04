@@ -52,6 +52,9 @@ def process_downloaded_emails(file_path):
 
 # Preprocess function
 def preprocess_email(email_text):
+    # Convert emails to lower case
+    email_text = email_text.lower()
+    
     # Tokenize the email text
     doc = nlp(email_text)
     
