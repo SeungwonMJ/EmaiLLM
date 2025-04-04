@@ -6,6 +6,7 @@ EmailLLM: Bulk Cleanser is a project developed as part of the CS 329 course. It 
 The project aims to improve email organization, save storage space, and reduce the time spent manually sorting unwanted emails.
 
 Features
+
 Bulk Email Detection: Filters mass or bulk emails by analyzing content, subject, and sender.
 
 Custom Keywords: Allows users to define custom keywords or phrases to filter emails.
@@ -17,6 +18,7 @@ User-Friendly Interface: Simple interface to upload and manage emails.
 Seamless Integration: Can be integrated with existing email platforms for automated processing (future implementation).
 
 Technologies Used
+
 Python: Programming language for backend and AI logic.
 
 Flask: Web framework to create the frontend for interacting with the email system.
