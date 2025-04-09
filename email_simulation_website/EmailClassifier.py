@@ -3,7 +3,8 @@ import re
 import json
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
-import google.generativeai as genai
+from google import genai
+
 from datetime import datetime
 
 class EmailClassifier:
