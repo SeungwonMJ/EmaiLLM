@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "sender": "club@university.edu",
+    "subject": "Meeting this Friday",
+    "content": "Hi everyone, just a reminder about our meeting this Friday at 4 PM in the main hall.",
+    "folder": "club"
+  },
+  {
+    "id": 2,
+    "sender": "club@university.edu",
+    "subject": "Midterm Grades",
+    "content": "Your midterm grades are now available online. Please check your grades portal.",
+    "folder": "grade"
+  },
+  {
+    "id": 3,
+    "sender": "club@university.edu",
+    "subject": "Guest Speaker Event",
+    "content": "Join us for a guest speaker event next Wednesday at 5 PM in the auditorium. Don’t miss out!",
+    "folder": "event"
+  }
+]
