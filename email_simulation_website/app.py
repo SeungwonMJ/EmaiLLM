@@ -5,6 +5,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Database setup (SQLite for simplicity)
+#DO YOU SEE THIS?
 def init_db():
     conn = sqlite3.connect('emails.db')
     c = conn.cursor()
@@ -21,7 +22,7 @@ def inbox():
     c.execute("SELECT * FROM emails ORDER BY date DESC")
     emails = c.fetchall()
     conn.close()
-    return render_template('index.html', emails=emails)
+    return render_template('home.html', emails=emails)
 
 # Route for composing an email
 @app.route('/compose', methods=['GET', 'POST'])

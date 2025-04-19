@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EmaiLLM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo">📧</div>
+            <div class="header-right">
+                <input type="text" placeholder="Search..." class="search-bar">
+                <div class="chatbot-placeholder">🤖</div>
+                <div class="user-profile">👤 User</div>
+            </div>
+        </header>
+
+        <!-- MAIN -->
+        <main class="main">
+            <!-- Left Side Folder Bar -->
+            <aside class="sidebar">
+                <div class="folder">Inbox</div>
+                <div class="folder">Keyword Folders</div>
+                <div class="folder">Trash</div>
+            </aside>
+
+            <!-- Email List & Details -->
+            <section class="content">
+                <div class="email-list">
+                    {% for email in emails %}
+                        <a href="{{ url_for('email_details', email_id=loop.index0) }}" class="email-item">
+                            📨 {{ email['subject'] }}
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="email-details">
+                    {% if selected_email %}
+                        <h2>Subject: {{ selected_email['subject'] }}</h2>
+                        <p><strong>From:</strong> {{ selected_email['sender'] }}</p>
+                        <p><strong>Content:</strong></p>
+                        <p>{{ selected_email['content'] }}</p>
+                    {% else %}
+                        <p>Select an email to view its details.</p>
+                    {% endif %}
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            &copy; 2025 Email Simulation
+        </footer>
+    </div>
+
+    <script>
+        // This function will handle showing the full email content
+        function showEmail(emailId) {
+            // Fetch email details based on emailId (you can modify this to fetch from Flask dynamically)
+            // For now, it just shows an alert with the email ID
+            alert("Email ID: " + emailId);
+
+            // In a real scenario, here you would fetch the email data and update the content
+            // For example: document.getElementById("email-subject").textContent = email.subject;
+            // document.getElementById("email-content").textContent = email.body;
+        }
+    </script>
+
+</body>
+</html>
