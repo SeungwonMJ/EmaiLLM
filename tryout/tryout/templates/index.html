@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmaiLLM - Bulk Cleanser</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- styles CSS link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container py-4">
+        <div class="app-container">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-envelope"></i>
+                    <h3 class="mb-0">EmailAssistant</h3>
+                </div>
+                <div class="user-info">
+                    user@example.com
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="row no-gutters">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="folder {% if not selected_keyword %}active{% endif %}">
+                        <a href="/" class="folder-link">
+                            <span><i class="fas fa-inbox"></i> Inbox</span>
+                            <span class="count">({{ total_emails }})</span>  {# Use total_emails here #}
+                        </a>
+                    </div>
+                
+                    <div class="section-header">KEYWORD FOLDERS</div>
+                    {% for keyword in keywords %}
+                    <div class="folder {% if selected_keyword == keyword %}active{% endif %}">
+                        <a href="/?keyword={{ keyword }}" class="folder-link">
+                            <span>
+                                {% if keyword == 'networking' %}
+                                <i class="fas fa-network-wired text-warning"></i>
+                                {% elif keyword == 'internship' %}
+                                <i class="fas fa-briefcase text-primary"></i>
+                                {% elif keyword == 'club events' %}
+                                <i class="fas fa-calendar-alt text-success"></i>
+                                {% else %}
+                                <i class="fas fa-tag"></i>
+                                {% endif %}
+                                {{ keyword|title }}
+                            </span>
+                            <span class="folder-count">
+                                {{ emails_by_keyword[keyword]|length if emails_by_keyword is defined and keyword in emails_by_keyword else 0 }}
+                            </span>
+                        </a>
+                    </div>
+                    {% endfor %}
+                
+                    <div class="folder {% if selected_keyword == 'untagged' %}active{% endif %}">
+                        <a href="/?keyword=untagged" class="folder-link">
+                            <span><i class="fas fa-archive text-secondary"></i> Untagged</span>
+                            <span class="folder-count">{{ untagged_count }}</span>
+                        </a>
+                    </div>
+                
+                    <div class="section-header">FOLDERS</div>
+                    <div class="folder">
+                        <span><i class="fas fa-star text-warning"></i> Important</span>
+                        <span class="folder-count">0</span>
+                    </div>
+                    <div class="folder">
+                        <span><i class="fas fa-archive"></i> Archive</span>
+                        <span class="folder-count">0</span>
+                    </div>
+                    <div class="folder">
+                        <span><i class="fas fa-trash-alt"></i> Trash</span>
+                        <span class="folder-count">0</span>
+                    </div>
+                </div>
+                
+                <!-- Email List and Details -->
+                <div class="col-md-9" id="main-content-col">
+                    <div class="row no-gutters">
+                        <!-- Search Box -->
+                        <div class="col-12">
+                            <div class="search-box">
+                                <form action="{{ url_for('search') }}" method="GET">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white border-right-0">
+                                                <i class="fas fa-search text-muted"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control border-left-0" name="q" placeholder="Club Events OR Networking OR Internship" value="{{ search_query }}">
+                                        {% if search_query %}
+                                        <div class="input-group-append">
+                                            <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">Clear</a>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Email List -->
+                        <div class="col-md-5 col-resizable" id="email-list-col">
+                            <div class="resize-handle" id="email-list-resize"></div>
+                            <div class="email-list">
+                                <!-- Untagged email processing buttons -->
+                                <div class="actions-bar mb-2">
+                                    <button id="process-untagged" class="btn btn-warning btn-sm"><i class="fas fa-magic"></i> Process Untagged Emails</button>
+                                </div>
+                                {% for email in emails %}
+                                <div class="email-item {% if loop.first %}selected{% endif %}" data-id="{{ loop.index0 }}" onclick="selectEmail({{ loop.index0 }})">
+                                    <div class="email-date">{{ email.date.split(' ')[1] ~ ' ' ~ email.date.split(' ')[0] }}</div>
+                                    <div class="email-sender">{{ email.sender_email }}</div>
+                                    <div class="email-subject">{{ email.subject }}</div>
+                                    <div class="email-preview">{{ email.content|truncate(100) }}</div>
+                        
+                                    {% if email.tags %}
+                                    <div class="email-tags">
+                                        {% for tag in email.tags %}
+                                        <span class="tag tag-{{ tag|replace(' ', '-') }}">
+                                            {% if tag == 'networking' %}
+                                            <i class="fas fa-network-wired"></i>
+                                            {% elif tag == 'internship' %}
+                                            <i class="fas fa-briefcase"></i>
+                                            {% elif tag == 'club events' %}
+                                            <i class="fas fa-calendar-alt"></i>
+                                            {% else %}
+                                            <i class="fas fa-tag"></i>
+                                            {% endif %}
+                                            {{ tag }}
+                                        </span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <!-- Email Details -->
+                        <div class="col-md-4 col-resizable" id="email-details-col">
+                            <div class="resize-handle" id="email-details-resize"></div>
+                            <div class="details-pane">
+                                {% if emails %}
+                                <div class="details-header">
+                                    <div class="details-subject" id="email-subject">{{ emails[0].subject }}</div>
+                                    <div class="details-info">From: <span id="email-from">{{ emails[0].sender_name }} &lt;{{ emails[0].sender_email }}&gt;</span></div>
+                                    <div class="details-info">To: <span id="email-to">{{ emails[0].recipients }}</span></div>
+                                    <div class="details-info">Date: <span id="email-date">{{ emails[0].date }}</span></div>
+                                </div>
+                                <div class="details-content" id="email-content">
+                                    {{ emails[0].content }}
+                                </div>
+                                
+                                <button class="btn btn-primary btn-classify" onclick="classifyCurrentEmail()">
+                                    <i class="fas fa-tags"></i> Classify Email
+                                </button>
+                                <div id="classification-result" class="mt-3"></div>
+                                {% else %}
+                                <div class="text-center p-5">
+                                    <i class="fas fa-envelope-open-text fa-3x text-muted mb-3"></i>
+                                    <p>Select an email to view details</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Column -->
+                        <div class="col-md-3 col-resizable" id="chat-col">
+                            <div class="chat-container">
+                                <div class="chat-header">
+                                    <i class="fas fa-robot"></i> Email Assistant
+                                </div>
+                                
+                                <!-- Categories Management Section -->
+                                <div class="category-management mb-3">
+                                    <div class="section-header small">CATEGORIES</div>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="category-input" class="form-control" placeholder="Enter new category..." aria-label="Category name">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="add-category-btn">
+                                                <i class="fas fa-plus"></i> Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Category Showcase -->
+                                    <div class="category-showcase" id="category-showcase">
+                                        <!-- Categories will be added here dynamically -->
+                                        {% if keywords %}
+                                            {% for keyword in keywords %}
+                                            <span class="category-badge">
+                                                {% if keyword == 'networking' %}
+                                                <i class="fas fa-network-wired text-warning"></i>
+                                                {% elif keyword == 'internship' %}
+                                                <i class="fas fa-briefcase text-primary"></i>
+                                                {% elif keyword == 'club events' %}
+                                                <i class="fas fa-calendar-alt text-success"></i>
+                                                {% else %}
+                                                <i class="fas fa-tag"></i>
+                                                {% endif %}
+                                                {{ keyword }}
+                                                <button class="delete-category" data-category="{{ keyword }}">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </span>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="section-header small">CHAT</div>
+                                <div class="chat-messages" id="chat-messages">
+                                    <div class="ai-message message">
+                                        Hi there! I can help you analyze and understand this email. What would you like to know?
+                                    </div>
+                                </div>
+                                <div class="chat-input">
+                                    <input type="text" id="chat-input-field" placeholder="Ask about this email...">
+                                    <button class="btn btn-primary" onclick="sendChatMessage()">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        const initialEmails = {{ emails|tojson|safe }};
+    </script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+</body>
+</html>
