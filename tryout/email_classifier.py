@@ -12,7 +12,7 @@ import json
 import string
 import re
 from typing import List, Dict, Any
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
@@ -26,6 +26,62 @@ from google.genai import types
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # for session management
 
+# Increase session lifetime and size limit
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=5)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max-limit
+
+# Global variable to store emails (as a backup for session)
+_EMAILS_CACHE = []
+
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+
+def load_and_cache_emails():
+    """Load emails and store them in both session and cache"""
+    global _EMAILS_CACHE
+    
+    # Try to get emails from cache first
+    if _EMAILS_CACHE:
+        print("Using cached emails")
+        return _EMAILS_CACHE
+        
+    # Load emails from common paths
+    emails = None
+    possible_paths = [
+        os.path.join(os.path.dirname(__file__), '..', 'data', 'qtm_emails.json'),
+        os.path.join(os.path.dirname(__file__), '..', 'data', 'emailGroup1.json'),
+        os.path.join(os.path.dirname(__file__), 'data', 'qtm_emails.json'),
+        os.path.join(os.path.dirname(__file__), 'qtm_emails.json'),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'qtm_emails.json')
+    ]
+    
+    for path in possible_paths:
+        if os.path.exists(path):
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    emails = json.load(f)
+                print(f"Loaded emails from {path}")
+                break
+            except json.JSONDecodeError:
+                print(f"Error loading JSON from {path}")
+                continue
+    
+    # Fall back to sample emails if none found
+    if not emails:
+        print("No email data found, using sample data")
+        emails = load_emails_from_json()
+    
+    # Add tags field if not present
+    for email in emails:
+        if 'tags' not in email:
+            email['tags'] = []
+    
+    # Store in cache
+    _EMAILS_CACHE = emails
+    print(f"Loaded and cached {len(emails)} emails")
+    return emails
+
 # Load environment variables
 from dotenv import load_dotenv
 load_dotenv()
@@ -34,14 +90,15 @@ load_dotenv()
 
 def setup_gemini_client():
     """Configure and return the Gemini API client."""
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         print("GEMINI_API_KEY is not set. Please set it in your .env file.")
         return None
     
     try:
-        genai.configure(api_key=api_key)
-        client = genai.GenerativeModel('gemini-pro')
+        # genai.configure(api_key=api_key)
+        # client = genai.GenerativeModel('gemini-2.0-flash')
+        client = genai.Client(api_key=api_key)
         return client
     except Exception as e:
         print(f"Failed to configure Gemini API: {str(e)}")
@@ -106,7 +163,7 @@ def retrieve_user_keywords() -> List[str]:
 
 # ============ Email Classification Functions ============
 
-def call_llm(client, content: str, instruction: str, model: str = "gemini-pro") -> str:
+def call_llm(client, content: str, instruction: str, model: str = "gemini-2.0-flash") -> str:
     """
     Call the language model to generate a response based on the content and instruction.
     
@@ -120,18 +177,26 @@ def call_llm(client, content: str, instruction: str, model: str = "gemini-pro") 
         The model's response text
     """
     try:
-        response = client.generate_content(
-            contents=[content],  # Email content goes here
-            generation_config=types.GenerationConfig(
-                max_output_tokens=1024,
-                temperature=0.1,
-            ),
-            system_instruction=instruction
+        print(f"Calling LLM with {len(content)} characters of content")
+        response = client.models.generate_content(
+        model=model,
+        contents=[content], # here should the content of email be
+        config=types.GenerateContentConfig(
+            max_output_tokens=1024,
+            temperature=0.1,
+            system_instruction= instruction,
         )
-        return response.text
+        )
+        if hasattr(response, 'text'):
+            return response.text
+        elif hasattr(response, 'candidates') and response.candidates:
+            return response.candidates[0].content.parts[0].text
+        else:
+            print("Unexpected response format:", response)
+            return str(response)
     except Exception as e:
         print(f"Error calling LLM: {str(e)}")
-        return ""
+        return f"Error: {str(e)}"
 
 def classify_email(email_content: str, keywords: List[str], client) -> Dict[str, Any]:
     """
@@ -294,15 +359,11 @@ def process_chat_query(query: str, email_data: Dict[str, Any]) -> str:
     Keep your response concise and relevant to the question.
     """
     
+    instruction = """You are an AI assistant helping a user understand and manage their email. 
+    Respond to their questions about the email content in a helpful, concise way."""
+    
     try:
-        response = client.generate_content(
-            contents=[prompt],
-            generation_config=types.GenerationConfig(
-                max_output_tokens=1024,
-                temperature=0.2,
-            )
-        )
-        return response.text
+        return call_llm(client, content=prompt, instruction=instruction)
     except Exception as e:
         print(f"Error processing chat query: {str(e)}")
         return f"Sorry, I encountered an error while processing your query: {str(e)}"
@@ -315,14 +376,15 @@ def home():
     Render the home page with email list.
     """
     # Load emails
-    emails = load_emails_from_json()
+    emails = load_and_cache_emails()
     
     # Get user keywords
     keywords = retrieve_user_keywords()
     
-    # Store emails in session
-    session['emails'] = emails
+    # Store keywords in session (emails are now in cache)
     session['keywords'] = keywords
+    
+    print(f"Loaded {len(emails)} emails")
     
     # Get search query if any
     search_query = request.args.get('q', '')
@@ -418,20 +480,35 @@ def classify_single_email():
     API endpoint to classify a single email on demand.
     """
     data = request.get_json()
+    print(f"Received classify request with data: {data}")
     
     if not data or 'email_id' not in data:
         return jsonify({'error': 'Invalid request. Email ID required.'}), 400
     
-    email_id = data['email_id']
-    emails = session.get('emails', [])
+    # Convert email_id to integer since it comes as string from JSON
+    try:
+        email_id = int(data['email_id'])
+    except ValueError:
+        return jsonify({'error': 'Invalid email ID format.'}), 400
+    
+    # Get emails from cache instead of session
+    emails = _EMAILS_CACHE
+    print(f"Found {len(emails)} emails in cache")
     
     # Find the email by ID
-    email = next((e for i, e in enumerate(emails) if i == email_id), None)
-    if not email:
-        return jsonify({'error': f'Email with ID {email_id} not found.'}), 404
+    try:
+        if email_id < 0 or email_id >= len(emails):
+            return jsonify({'error': f'Email ID {email_id} out of range.'}), 404
+        
+        email = emails[email_id]
+        print(f"Found email: {email.get('subject', 'No subject')}")
+    except Exception as e:
+        print(f"Error finding email: {str(e)}")
+        return jsonify({'error': f'Email with ID {email_id} not found. Error: {str(e)}'}), 404
     
     # Get keywords
     keywords = session.get('keywords', [])
+    print(f"Keywords from session: {keywords}")
     if not keywords:
         return jsonify({'error': 'No keywords defined.'}), 400
     
@@ -445,14 +522,15 @@ def classify_single_email():
     
     # Classify the email
     email_content = email.get('content', '')
+    print(f"Classifying email with content length: {len(email_content)}")
     classification_result = classify_email(email_content, keywords, client)
+    print(f"Classification result: {classification_result}")
     
     # Update the email's tags
     email['tags'] = classification_result.get('relevant_keywords', [])
     
-    # Update session
-    emails[email_id] = email
-    session['emails'] = emails
+    # Update cache
+    _EMAILS_CACHE[email_id] = email
     
     return jsonify({
         'status': 'success',
@@ -627,4 +705,6 @@ if __name__ == '__main__':
     port = int(os.getenv("PORT", 7747))
     
     # Start the Flask application
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)    
+    
+    
