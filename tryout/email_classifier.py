@@ -13,10 +13,10 @@ import string
 import re
 from typing import List, Dict, Any
 from datetime import datetime, timedelta
-
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session, send_file
+import io
 
 # Google Gemini imports
 from google import genai
@@ -40,46 +40,59 @@ def make_session_permanent():
 def load_and_cache_emails():
     """Load emails and store them in both session and cache"""
     global _EMAILS_CACHE
-    
+
+    print("Attempting to load and cache emails...")
+
     # Try to get emails from cache first
     if _EMAILS_CACHE:
         print("Using cached emails")
+        print(f"Cache contains {len(_EMAILS_CACHE)} emails.")
         return _EMAILS_CACHE
-        
+
+    print("Cache is empty. Attempting to load from JSON files...")
     # Load emails from common paths
     emails = None
     possible_paths = [
-        os.path.join(os.path.dirname(__file__), '..', 'data', 'qtm_emails.json'),
+        os.path.join(os.path.dirname(__file__), '..', 'data', 'qtm_email.json'),
         os.path.join(os.path.dirname(__file__), '..', 'data', 'emailGroup1.json'),
-        os.path.join(os.path.dirname(__file__), 'data', 'qtm_emails.json'),
-        os.path.join(os.path.dirname(__file__), 'qtm_emails.json'),
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'qtm_emails.json')
+        os.path.join(os.path.dirname(__file__), 'data', 'qtm_email.json'),
+        os.path.join(os.path.dirname(__file__), 'qtm_email.json'),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'qtm_email.json')
     ]
-    
+
     for path in possible_paths:
+        print(f"Checking for emails at: {path}")
         if os.path.exists(path):
+            print(f"File found at: {path}")
             try:
                 with open(path, 'r', encoding='utf-8') as f:
                     emails = json.load(f)
-                print(f"Loaded emails from {path}")
-                break
+                print(f"Loaded emails successfully from {path}")
+                break  # Stop after successfully loading from one file
             except json.JSONDecodeError:
-                print(f"Error loading JSON from {path}")
+                print(f"Error loading JSON from {path} - Invalid JSON format.")
                 continue
-    
+        else:
+            print(f"File not found at: {path}")
+
     # Fall back to sample emails if none found
     if not emails:
-        print("No email data found, using sample data")
+        print("No email data found from JSON files, using sample data.")
         emails = load_emails_from_json()
-    
+        print(f"Loaded {len(emails)} emails from sample data.")
+
     # Add tags field if not present
     for email in emails:
         if 'tags' not in email:
             email['tags'] = []
-    
+
     # Store in cache
     _EMAILS_CACHE = emails
-    print(f"Loaded and cached {len(emails)} emails")
+    print(f"Loaded and cached {len(emails)} emails.")
+    if _EMAILS_CACHE:
+        print(f"First email in cache: {_EMAILS_CACHE[0].get('subject', 'No Subject')}")
+    else:
+        print("Cache is empty after loading attempt.")
     return emails
 
 # Load environment variables
@@ -278,8 +291,8 @@ def load_emails_from_json(filepath: str = None) -> List[Dict[str, Any]]:
     if not filepath:
         # Try common locations
         possible_paths = [
-            os.path.join(os.path.dirname(__file__), 'data', 'qtm_emails.json'),
-            os.path.join(os.path.dirname(__file__), 'qtm_emails.json')
+            os.path.join(os.path.dirname(__file__), 'data', 'qtm_email.json'),
+            os.path.join(os.path.dirname(__file__), 'qtm_email.json')
         ]
         
         for path in possible_paths:
@@ -373,40 +386,55 @@ def process_chat_query(query: str, email_data: Dict[str, Any]) -> str:
 @app.route('/')
 def home():
     """
-    Render the home page with email list.
+    Render the home page with email list, optionally filtered by keyword.
     """
-    # Load emails
-    emails = load_and_cache_emails()
-    
-    # Get user keywords
-    keywords = retrieve_user_keywords()
-    
-    # Store keywords in session (emails are now in cache)
-    session['keywords'] = keywords
-    
-    print(f"Loaded {len(emails)} emails")
-    
-    # Get search query if any
+    emails = _EMAILS_CACHE
+    keywords = session.get('keywords', [])
+    selected_keyword = request.args.get('keyword', None)
     search_query = request.args.get('q', '')
     
-    # Filter emails if search query provided
-    if search_query:
-        filtered_emails = []
+    total_emails = len(emails)  # Calculate the total number of emails
+
+    emails_by_keyword = {keyword: [] for keyword in keywords}
+    untagged_count = 0
+    for email in emails:
+        if not email['tags']:
+            untagged_count += 1
+            emails_by_keyword['untagged'] = emails_by_keyword.get('untagged', []) + [email]
+        else:
+            for tag in email['tags']:
+                if tag in emails_by_keyword:
+                    emails_by_keyword[tag].append(email)
+
+    filtered_emails = []
+    if selected_keyword == 'untagged':
+        filtered_emails = [email for email in emails if not email['tags']]
+    elif selected_keyword:
+        filtered_emails = [
+            email for email in emails if selected_keyword in email['tags']
+        ]
+    elif search_query:
         terms = search_query.lower().split()
         for email in emails:
             subject = email.get('subject', '').lower()
             content = email.get('content', '').lower()
             sender = email.get('sender_name', '').lower()
-            
             if any(term in subject or term in content or term in sender for term in terms):
                 filtered_emails.append(email)
-        emails = filtered_emails
-    
-    return render_template('index.html', 
-                          emails=emails, 
-                          keywords=keywords,
-                          search_query=search_query,
-                          current_step=1)
+    else:
+        filtered_emails = emails
+
+    return render_template(
+        'index.html',
+        emails=filtered_emails,
+        keywords=keywords,
+        search_query=search_query,
+        selected_keyword=selected_keyword,
+        emails_by_keyword=emails_by_keyword,
+        untagged_count=untagged_count,
+        total_emails=total_emails,
+        current_step=4,
+    )
 
 @app.route('/process-emails', methods=['POST'])
 def process_emails():
@@ -656,6 +684,71 @@ def delete_category():
         print(f"Error removing category: {str(e)}")
         return jsonify({'status': 'error', 'message': str(e)})
 
+# @app.route('/download-untagged', endpoint='download_untagged')  # Make sure 'endpoint' is specified
+# def download_untagged():
+#     """Downloads the content of untagged emails as a text file."""
+#     untagged_emails = [email for email in _EMAILS_CACHE if not email['tags']]
+#     if not untagged_emails:
+#         return "No untagged emails to download."
+# 
+#     file_content = ""
+#     for email in untagged_emails:
+#         file_content += f"Subject: {email.get('subject', 'No Subject')}\n"
+#         file_content += f"Sender: {email.get('sender_email', 'No Sender')}\n"
+#         file_content += f"Date: {email.get('date', 'No Date')}\n"
+#         file_content += f"Content:\n{email.get('content', 'No Content')}\n\n"
+# 
+#     mem = io.BytesIO()
+#     mem.write(file_content.encode('utf-8'))
+#     mem.seek(0)
+# 
+#     return send_file(
+#         mem,
+#         mimetype='text/plain',
+#         as_attachment=True,
+#         download_name='untagged_emails.txt'
+#     )
+#
+# @app.route('/delete-untagged')
+# def delete_untagged():
+#     """Simulates deleting all untagged emails."""
+#     global _EMAILS_CACHE
+#     _EMAILS_CACHE = [email for email in _EMAILS_CACHE if email['tags']]
+#     return redirect(url_for('home'))
+
+@app.route('/process-untagged')
+def process_untagged():
+    """Downloads untagged emails and then deletes them."""
+    global _EMAILS_CACHE  # Declare _EMAILS_CACHE as global
+
+    untagged_emails = [email for email in _EMAILS_CACHE if not email['tags']]
+
+    if untagged_emails:
+        # Prepare content for download
+        file_content = ""
+        for email in untagged_emails:
+            file_content += f"Subject: {email.get('subject', 'No Subject')}\n"
+            file_content += f"Sender: {email.get('sender_email', 'No Sender')}\n"
+            file_content += f"Date: {email.get('date', 'No Date')}\n"
+            file_content += f"Content:\n{email.get('content', 'No Content')}\n\n"
+
+        mem = io.BytesIO()
+        mem.write(file_content.encode('utf-8'))
+        mem.seek(0)
+
+        # Simulate deletion
+        _EMAILS_CACHE = [email for email in _EMAILS_CACHE if email['tags']]
+
+        return send_file(
+            mem,
+            mimetype='text/plain',
+            as_attachment=True,
+            download_name='untagged_emails.txt'
+        )
+    else:
+        # If no untagged emails, just redirect back to inbox
+        return redirect(url_for('home'))
+
 def update_env_file(key, value):
     """Update a specific key in the .env file"""
     env_path = '.env'
@@ -695,6 +788,9 @@ def update_env_file(key, value):
 # ============ Main Application Entry ============
 
 if __name__ == '__main__':
+    # Load emails into cache on application startup
+    load_and_cache_emails()
+    
     # Default keywords if not set in environment
     if not os.getenv("USER_KEYWORDS"):
         default_keywords = "networking,internship,club events"
