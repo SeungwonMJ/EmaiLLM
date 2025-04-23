@@ -31,6 +31,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=5)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max-limit
 
 # Global variable to store emails (as a backup for session)
+DATA_FILE = os.path.join('data', 'qtm_email.json')
 _EMAILS_CACHE = []
 
 @app.before_request
@@ -338,6 +339,29 @@ def load_emails_from_json(filepath: str = None) -> List[Dict[str, Any]]:
     except Exception as e:
         print(f"Error loading emails from JSON: {str(e)}")
         return []
+
+def load_emails():
+    global _EMAILS_CACHE
+    try:
+        with open(DATA_FILE, 'r') as f:
+            _EMAILS_CACHE = json.load(f)
+    except FileNotFoundError:
+        print(f"Warning: {DATA_FILE} not found. Starting with empty email cache.")
+        _EMAILS_CACHE = {}  # Initialize as empty dictionary
+    except json.JSONDecodeError:
+        print(f"Error: {DATA_FILE} is not valid JSON.  Starting with empty email cache.")
+        _EMAILS_CACHE = {}
+
+def save_emails():
+    """Save the current email data to the JSON file, handling errors."""
+    try:
+        temp_file_path = DATA_FILE + ".tmp"
+        with open(temp_file_path, 'w', encoding='utf-8') as f:
+            json.dump(_EMAILS_CACHE, f, indent=4) # Dump the list
+        os.replace(temp_file_path, DATA_FILE)
+        print(f"Successfully saved email data to {DATA_FILE}")
+    except Exception as e:
+        print(f"Error saving email data to {DATA_FILE}: {e}")
 
 # ============ Chat Processing ============
 
@@ -684,38 +708,6 @@ def delete_category():
         print(f"Error removing category: {str(e)}")
         return jsonify({'status': 'error', 'message': str(e)})
 
-# @app.route('/download-untagged', endpoint='download_untagged')  # Make sure 'endpoint' is specified
-# def download_untagged():
-#     """Downloads the content of untagged emails as a text file."""
-#     untagged_emails = [email for email in _EMAILS_CACHE if not email['tags']]
-#     if not untagged_emails:
-#         return "No untagged emails to download."
-# 
-#     file_content = ""
-#     for email in untagged_emails:
-#         file_content += f"Subject: {email.get('subject', 'No Subject')}\n"
-#         file_content += f"Sender: {email.get('sender_email', 'No Sender')}\n"
-#         file_content += f"Date: {email.get('date', 'No Date')}\n"
-#         file_content += f"Content:\n{email.get('content', 'No Content')}\n\n"
-# 
-#     mem = io.BytesIO()
-#     mem.write(file_content.encode('utf-8'))
-#     mem.seek(0)
-# 
-#     return send_file(
-#         mem,
-#         mimetype='text/plain',
-#         as_attachment=True,
-#         download_name='untagged_emails.txt'
-#     )
-#
-# @app.route('/delete-untagged')
-# def delete_untagged():
-#     """Simulates deleting all untagged emails."""
-#     global _EMAILS_CACHE
-#     _EMAILS_CACHE = [email for email in _EMAILS_CACHE if email['tags']]
-#     return redirect(url_for('home'))
-
 @app.route('/process-untagged')
 def process_untagged():
     """Downloads untagged emails and then deletes them."""
@@ -784,6 +776,27 @@ def update_env_file(key, value):
     except Exception as e:
         print(f"Error updating .env file: {str(e)}")
         raise
+
+@app.route('/create-email', methods=['POST'])
+def create_email():
+    """
+    Handles the creation of a new email and adds it to the JSON file.
+    """
+    try:
+        email_data = request.get_json()
+        if not all(k in email_data for k in ('sender_name', 'sender_email', 'recipients', 'subject', 'content')):
+            return jsonify({'error': 'Missing required fields'}), 400
+
+        global _EMAILS_CACHE
+        email_data['date'] = datetime.now().strftime('%b %d %Y %H:%M:%S')
+        email_data['tags'] = []
+        _EMAILS_CACHE.append(email_data)  # Append to the list
+
+        save_emails() # Ensure save_emails writes a list to JSON
+        return jsonify({'success': True}), 200
+    except Exception as e:
+        print(f"Error creating email: {e}")
+        return jsonify({'error': str(e)}), 500
 
 # ============ Main Application Entry ============
 
