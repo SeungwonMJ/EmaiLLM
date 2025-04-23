@@ -55,7 +55,7 @@ def load_and_cache_emails():
     emails = None
     possible_paths = [
         os.path.join(os.path.dirname(__file__), '..', 'data', 'qtm_email.json'),
-        os.path.join(os.path.dirname(__file__), '..', 'data', 'emailGroup1.json'),
+        # os.path.join(os.path.dirname(__file__), '..', 'data', 'emailGroup1.json'),
         os.path.join(os.path.dirname(__file__), 'data', 'qtm_email.json'),
         os.path.join(os.path.dirname(__file__), 'qtm_email.json'),
         os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'qtm_email.json')
