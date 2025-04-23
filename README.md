@@ -7,7 +7,7 @@ The project aims to improve email organization, save storage space, and reduce t
 
 Features
 
-Bulk Email Detection: Filters mass or bulk emails by analyzing content, subject, and sender.
+Bulk Email Detection: Filters mass or bulk emails by analyzing content, subject, and sender(if applicable).
 
 Custom Keywords: Allows users to define custom keywords or phrases to filter emails.
 
@@ -24,7 +24,5 @@ Python: Programming language for backend and AI logic.
 Flask: Web framework to create the frontend for interacting with the email system.
 
 spaCy: NLP library for text processing, including tokenization, lemmatization, and stopword removal.
-
-SQLite: Database (if required) for storing user preferences and filtered emails.
 
 HTML/CSS: Frontend for displaying the email simulation and processing results.
