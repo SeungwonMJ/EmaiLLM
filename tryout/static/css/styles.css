@@ -40,7 +40,7 @@ body {
 .sidebar {
     background-color: #f0f2f5;
     padding: 15px;
-    height: calc(100vh - 150px);
+    height: 100vh;
     overflow-y: auto;
 }
 
@@ -83,7 +83,7 @@ body {
 }
 
 .email-list {
-    height: calc(100vh - 250px);
+    height: calc(100vh - 70px);
     overflow-y: auto;
     border-right: 1px solid #ddd;
 }
@@ -166,7 +166,7 @@ body {
 
 .details-pane {
     padding: 20px;
-    height: calc(100vh - 250px);
+    height: calc(100vh - 70px);
     overflow-y: auto;
 }
 
@@ -216,7 +216,7 @@ body {
     padding: 10px;
     background-color: #f5f7fa;
     border-radius: 4px;
-    height: calc(100vh - 350px);
+    height: calc(100vh - 100px);
 }
 
 .chat-input {
@@ -336,6 +336,9 @@ body {
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 12px;
+    max-height: 150px; /* Adjust this value to your desired fixed height */
+    overflow-y: auto; /* Enable vertical scrolling when content exceeds max-height */
+    padding-right: 8px; /* Optional: Add some padding for scrollbar visibility */
 }
 
 .category-badge {
@@ -385,7 +388,13 @@ body {
 
 /* Adjust chat messages to have less height due to added category section */
 .chat-messages {
-    height: calc(100vh - 450px);
+    flex-grow: 1; /* Keep this to allow it to take available vertical space initially */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f5f7fa;
+    border-radius: 4px;
+    max-height: 300px; /* Adjust this value to your desired fixed maximum height for the chat messages */
 }
 
 /* Add notification styles */
