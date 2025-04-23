@@ -353,15 +353,21 @@ def load_emails():
         _EMAILS_CACHE = {}
 
 def save_emails():
-    """Save the current email data to the JSON file, handling errors."""
+    """Save the current email data to the JSON file, with new emails at the front."""
     try:
+        # Create a temporary file
         temp_file_path = DATA_FILE + ".tmp"
         with open(temp_file_path, 'w', encoding='utf-8') as f:
-            json.dump(_EMAILS_CACHE, f, indent=4) # Dump the list
+            # Ensure the newest emails (from _EMAILS_CACHE) are written first
+            json.dump(_EMAILS_CACHE, f, indent=4)
+
+        # Rename the temporary file to the original file
         os.replace(temp_file_path, DATA_FILE)
-        print(f"Successfully saved email data to {DATA_FILE}")
+        print(f"Successfully saved email data to {DATA_FILE} with new emails at the front.")
+
     except Exception as e:
         print(f"Error saving email data to {DATA_FILE}: {e}")
+        # Consider more robust error handling
 
 # ============ Chat Processing ============
 
@@ -788,9 +794,9 @@ def create_email():
             return jsonify({'error': 'Missing required fields'}), 400
 
         global _EMAILS_CACHE
-        email_data['date'] = datetime.now().strftime('%b %d %Y %H:%M:%S')
+        email_data['date'] = datetime.now().strftime('%b %d, %Y %H:%M:%S')
         email_data['tags'] = []
-        _EMAILS_CACHE.append(email_data)  # Append to the list
+        _EMAILS_CACHE.insert(0, email_data)  # Insert at the beginning of the list
 
         save_emails() # Ensure save_emails writes a list to JSON
         return jsonify({'success': True}), 200
