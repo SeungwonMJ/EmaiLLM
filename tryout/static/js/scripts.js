@@ -664,3 +664,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Sets up event listeners for the "New Email" button to show a modal, and for the modal's send button to submit the new email data to the server via a POST request.
+document.addEventListener('DOMContentLoaded', function() {
+    const newEmailButton = document.getElementById('new-email-button');
+    const newEmailModal = document.getElementById('newEmailModal'); // Get the modal element
+    const sendNewEmailButton = document.getElementById('sendNewEmailButton');
+    const newEmailForm = document.getElementById('newEmailForm');
+
+    if (newEmailButton && newEmailModal && sendNewEmailButton && newEmailForm) {
+        newEmailButton.addEventListener('click', function() {
+            // Show the modal
+            $(newEmailModal).modal('show'); // Use jQuery to show the modal
+        });
+
+        sendNewEmailButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the form from submitting in the default way
+
+            // Get the form data
+            const formData = new FormData(newEmailForm);
+            const emailData = {};
+            formData.forEach((value, key) => {
+                emailData[key] = value;
+            });
+
+            // Basic validation (you can add more robust validation)
+            if (!emailData.sender_name || !emailData.sender_email || !emailData.recipients || !emailData.subject || !emailData.content) {
+                alert("Please fill in all required fields.");
+                return; // Stop if there are errors
+            }
+
+            // Send the data to the server
+            fetch('/create-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(emailData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response from server:', data);
+                if (data.success) {
+                    alert("Email sent successfully!");
+                    $(newEmailModal).modal('hide'); // Hide the modal
+                    newEmailForm.reset(); // Clear the form
+                    // Optionally, update the email list in the UI
+                } else {
+                    alert('Error sending email: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error sending email:', error);
+                alert("Error communicating with the server.");
+            });
+        });
+    } else {
+        console.warn("One or more elements (new email button, modal, send button, form) not found.");
+    }
+});
