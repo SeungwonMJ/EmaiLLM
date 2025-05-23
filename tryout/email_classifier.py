@@ -229,13 +229,14 @@ def classify_email(email_content: str, keywords: List[str], client) -> Dict[str,
     PROMPT_CLASSIFICATION = f"""
     You are an email classification assistant. Your task is to analyze the content of emails and identify which of the following keywords are relevant to the email:
 
-    [{KEYWORDS}] 
+    Here are the keywords you are looking for: [{KEYWORDS}] 
     
     Instructions:
     1. Analyze the full email content provided
     2. Identify any keywords from the list that are relevant to the email
     3. Return ONLY the relevant keywords
     4. If no keywords match, return "NONE"
+    5. The content must be closely related to the keywords 
 
     Return your classification in this format:
     KEYWORDS: <relevant keywords (separated by commas) or NONE>
@@ -248,6 +249,21 @@ def classify_email(email_content: str, keywords: List[str], client) -> Dict[str,
     Output:
     KEYWORDS: networking, internship
     
+    Example 2:
+    
+    Given these keywords: careers, administration, research, training, events, academics (THIS IS NOT THE ACTUALY KEYWORDS ! ! ! !)
+    
+      Content: "On behalf of Emory\u2019s Women in STEM organization, You are invited to their annual Networking Night!\n Join us on Wednesday, April 2nd, from 6-8 PMin the Math and Science Center (MSC) E208. This event will feature a panel of women professionals from STEM fields, who will share their experiences and discuss what it\u2019s like to work in these roles, as well as their journeys as women in STEM. The event will be informal and relaxed, with pizza and refreshments provided. It\u2019s a fantastic opportunity to meet professors, graduate students, and network with others in our community.\nIf you\u2019re interested in attending, please RSVP here: https://tr.ee/v9QfhkjLRQ\n       ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________\n  SUMMER RESEARCH PROGRAM: AI Xperience \nEmory\u2019s Center for AI Learning invites students toapply to AI.Xperience, its summer applied research program.In this program, students will have the opportunity to grow their data science and programming skills with hands-on learning. To be selected, students need to:\u00b7\n\t\u2022\tHave been enrolled in classes in the spring 2025 semester and be enrolled at Emory in the fall 2024 semester\n\t\u2022\tAttend 3 or 4 team meetings per week\n\t\u2022\tBe able to commit roughly 20 hours per week to the project over the 6-week period\n\t\u2022\tHave knowledge of common statistical analysis and machine learning methods\n\t\u2022\tHave experience programming in R and/or PythonAll interested students should applyby 11:59 PM on March 29, 2025.We look forward to reviewing your applications!\nAPPLY\n \n             Sadie Hannans\nUndergraduate Program Coordinator\nDepartment of Quantitative Theory & Methods\nEmory University\nEmail: shanna9@emory.edu | 470-620-7981\n(she/her/hers)"
+    
+    correct keywords: events, research
+    
+    
+    Example 3:
+    
+    Content: SPECIAL ANNOUNCEMENT   Applications for Peer Mentorship/Grader positions for Fall 2025 QTM Courses are now open! Course support personnel work 4-8 hours per week on average across the semester and receive QTM 398R credit hours based on their position. Applications for Fall 2025 courses are due by April 17th and priority will be given to early applicants. The courses that are hiring and more specific details about the positions are included in the application form.  As many positions may require you to attend their section, we recommend applying only once your own Fall 2025 enrollments are complete!   Application for positions with QTM 100: https://forms.office.com/r/LkyaAw4y8M   Application for positions with other QTM courses: https://forms.office.com/r/341wsY0pq6   For questions about the QTM 100 positions, please email Lora McDonald (lora.mcdonald@emory.edu); for questions about the non-100 positions, please email Prof. Cuttner (Allison.cuttner@emory.edu)   Best,   Sadie Hannans Undergraduate Program Coordinator Department of Quantitative Theory & Methods Emory University Email: shanna9@emory.edu | 470-620-7981 (she/her/hers)
+    
+    Correct keywords: jobs, administration, opportunities
+
 
     Do not include any additional explanation or analysis in your response.
     """
@@ -439,7 +455,7 @@ def home():
     filtered_emails = []
     if selected_keyword == 'untagged':
         filtered_emails = [email for email in emails if not email['tags']]
-    elif selected_keyword:
+    elif selected_keyword and selected_keyword != 'inbox': # Exclude 'inbox' here
         filtered_emails = [
             email for email in emails if selected_keyword in email['tags']
         ]
@@ -451,7 +467,7 @@ def home():
             sender = email.get('sender_name', '').lower()
             if any(term in subject or term in content or term in sender for term in terms):
                 filtered_emails.append(email)
-    else:
+    else: # Handles default case OR selected_keyword == 'inbox'
         filtered_emails = emails
 
     return render_template(
@@ -589,6 +605,7 @@ def classify_single_email():
     
     # Update cache
     _EMAILS_CACHE[email_id] = email
+    save_emails() # <-- Add this line to persist changes
     
     return jsonify({
         'status': 'success',
@@ -676,39 +693,52 @@ def add_category():
 
 @app.route('/delete-category', methods=['POST'])
 def delete_category():
-    """Delete a category keyword from the .env file"""
+    """Delete a category keyword from the .env file and remove tag from emails."""
+    global _EMAILS_CACHE # Ensure cache is accessible
     try:
         data = request.json
-        category = data.get('category', '').strip().lower()
+        category_to_delete = data.get('category', '').strip().lower()
         
-        if not category:
+        if not category_to_delete:
             return jsonify({'status': 'error', 'message': 'Empty category name'})
         
-        # Get current keywords directly from the .env file (not cache)
-        # Force reload from .env by reloading dotenv
+        # Get current keywords directly from the .env file
         load_dotenv(override=True)
         current_keywords = retrieve_user_keywords()
         
         # Check if keyword exists
-        if category not in current_keywords:
-            return jsonify({'status': 'error', 'message': 'Category does not exist'})
+        if category_to_delete not in current_keywords:
+            # It might have already been deleted, proceed to clean emails anyway
+            print(f"Category '{category_to_delete}' not found in .env keywords, proceeding to clean emails.")
+            # return jsonify({'status': 'error', 'message': 'Category does not exist'})
+        else:
+             # Remove the keyword from list and update .env
+            current_keywords.remove(category_to_delete)
+            update_env_file("USER_KEYWORDS", ",".join(current_keywords))
+            # Update session with new keywords
+            session['keywords'] = current_keywords
+            # Also reload os.environ with the new value
+            os.environ["USER_KEYWORDS"] = ",".join(current_keywords)
+            print(f"Removed category '{category_to_delete}' from .env and session.")
+
+        # --- Remove tag from emails in cache --- 
+        updated_email_count = 0
+        for email in _EMAILS_CACHE:
+            if 'tags' in email and category_to_delete in email['tags']:
+                email['tags'].remove(category_to_delete)
+                updated_email_count += 1
         
-        # Remove the keyword
-        current_keywords.remove(category)
-        
-        # Update the .env file
-        update_env_file("USER_KEYWORDS", ",".join(current_keywords))
-        
-        # Update session with new keywords
-        session['keywords'] = current_keywords
-        
-        # Also reload os.environ with the new value to ensure it's available
-        os.environ["USER_KEYWORDS"] = ",".join(current_keywords)
-        
+        if updated_email_count > 0:
+            print(f"Removed tag '{category_to_delete}' from {updated_email_count} emails in cache.")
+            save_emails() # Save the changes to the JSON file
+        else:
+            print(f"Tag '{category_to_delete}' not found on any emails in cache.")
+        # --- End tag removal --- 
+            
         return jsonify({
             'status': 'success', 
             'message': 'Category removed successfully',
-            'keywords': current_keywords
+            'keywords': current_keywords # Return the updated list
         })
     except Exception as e:
         print(f"Error removing category: {str(e)}")
@@ -817,7 +847,7 @@ if __name__ == '__main__':
         print(f"USER_KEYWORDS not set. Using default: {default_keywords}")
     
     # Get port from environment or use default
-    port = int(os.getenv("PORT", 7747))
+    port = int(os.getenv("PORT", 5000))
     
     # Start the Flask application
     app.run(host='0.0.0.0', port=port, debug=True)    
