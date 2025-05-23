@@ -1,0 +1,1570 @@
+{
+    "records": [
+        {
+            "timestamp": "2025-05-02T21:05:31.638949",
+            "model": "gemini-2.0-flash",
+            "content_length": 1927,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 621,
+                "completion_tokens": 4,
+                "total_tokens": 625
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:32.133118",
+            "model": "gemini-2.0-flash",
+            "content_length": 1508,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 575,
+                "completion_tokens": 4,
+                "total_tokens": 579
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:32.576650",
+            "model": "gemini-2.0-flash",
+            "content_length": 985,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 455,
+                "completion_tokens": 4,
+                "total_tokens": 459
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:32.993461",
+            "model": "gemini-2.0-flash",
+            "content_length": 1403,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 558,
+                "completion_tokens": 4,
+                "total_tokens": 562
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:33.499480",
+            "model": "gemini-2.0-flash",
+            "content_length": 8260,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 2234,
+                "completion_tokens": 4,
+                "total_tokens": 2238
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:33.904931",
+            "model": "gemini-2.0-flash",
+            "content_length": 1505,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 630,
+                "completion_tokens": 4,
+                "total_tokens": 634
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:34.419830",
+            "model": "gemini-2.0-flash",
+            "content_length": 913,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 432,
+                "completion_tokens": 4,
+                "total_tokens": 436
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:34.827888",
+            "model": "gemini-2.0-flash",
+            "content_length": 959,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 440,
+                "completion_tokens": 4,
+                "total_tokens": 444
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:35.229667",
+            "model": "gemini-2.0-flash",
+            "content_length": 1180,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 496,
+                "completion_tokens": 4,
+                "total_tokens": 500
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:35.750539",
+            "model": "gemini-2.0-flash",
+            "content_length": 568,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 394,
+                "completion_tokens": 4,
+                "total_tokens": 398
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:36.086468",
+            "model": "gemini-2.0-flash",
+            "content_length": 1595,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 601,
+                "completion_tokens": 4,
+                "total_tokens": 605
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:36.470112",
+            "model": "gemini-2.0-flash",
+            "content_length": 509,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 315,
+                "completion_tokens": 4,
+                "total_tokens": 319
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:36.913526",
+            "model": "gemini-2.0-flash",
+            "content_length": 5233,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 1531,
+                "completion_tokens": 4,
+                "total_tokens": 1535
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:37.390469",
+            "model": "gemini-2.0-flash",
+            "content_length": 1329,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 515,
+                "completion_tokens": 4,
+                "total_tokens": 519
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:37.900351",
+            "model": "gemini-2.0-flash",
+            "content_length": 4279,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 1353,
+                "completion_tokens": 4,
+                "total_tokens": 1357
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:38.413697",
+            "model": "gemini-2.0-flash",
+            "content_length": 6628,
+            "instruction_length": 848,
+            "response_length": 16,
+            "usage": {
+                "prompt_tokens": 1872,
+                "completion_tokens": 3,
+                "total_tokens": 1875
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:38.828813",
+            "model": "gemini-2.0-flash",
+            "content_length": 1044,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 458,
+                "completion_tokens": 4,
+                "total_tokens": 462
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:39.280117",
+            "model": "gemini-2.0-flash",
+            "content_length": 1002,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 442,
+                "completion_tokens": 4,
+                "total_tokens": 446
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:39.744304",
+            "model": "gemini-2.0-flash",
+            "content_length": 8862,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 2685,
+                "completion_tokens": 3,
+                "total_tokens": 2688
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:40.153208",
+            "model": "gemini-2.0-flash",
+            "content_length": 3765,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 1012,
+                "completion_tokens": 4,
+                "total_tokens": 1016
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:40.563758",
+            "model": "gemini-2.0-flash",
+            "content_length": 1124,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 476,
+                "completion_tokens": 4,
+                "total_tokens": 480
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:41.028695",
+            "model": "gemini-2.0-flash",
+            "content_length": 1097,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 467,
+                "completion_tokens": 4,
+                "total_tokens": 471
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:41.432282",
+            "model": "gemini-2.0-flash",
+            "content_length": 1201,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 454,
+                "completion_tokens": 4,
+                "total_tokens": 458
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:41.791069",
+            "model": "gemini-2.0-flash",
+            "content_length": 356,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 281,
+                "completion_tokens": 4,
+                "total_tokens": 285
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:42.227307",
+            "model": "gemini-2.0-flash",
+            "content_length": 5182,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 1834,
+                "completion_tokens": 4,
+                "total_tokens": 1838
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:42.716998",
+            "model": "gemini-2.0-flash",
+            "content_length": 2428,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 782,
+                "completion_tokens": 4,
+                "total_tokens": 786
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:43.131992",
+            "model": "gemini-2.0-flash",
+            "content_length": 545,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 345,
+                "completion_tokens": 4,
+                "total_tokens": 349
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:43.533443",
+            "model": "gemini-2.0-flash",
+            "content_length": 800,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 396,
+                "completion_tokens": 4,
+                "total_tokens": 400
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:43.990116",
+            "model": "gemini-2.0-flash",
+            "content_length": 3800,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 1503,
+                "completion_tokens": 4,
+                "total_tokens": 1507
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:44.423364",
+            "model": "gemini-2.0-flash",
+            "content_length": 7002,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 1831,
+                "completion_tokens": 4,
+                "total_tokens": 1835
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:44.844769",
+            "model": "gemini-2.0-flash",
+            "content_length": 2421,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 783,
+                "completion_tokens": 4,
+                "total_tokens": 787
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:45.244825",
+            "model": "gemini-2.0-flash",
+            "content_length": 2168,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 758,
+                "completion_tokens": 4,
+                "total_tokens": 762
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:45.708931",
+            "model": "gemini-2.0-flash",
+            "content_length": 5524,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 1610,
+                "completion_tokens": 3,
+                "total_tokens": 1613
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:46.042735",
+            "model": "gemini-2.0-flash",
+            "content_length": 717,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 358,
+                "completion_tokens": 4,
+                "total_tokens": 362
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:46.449659",
+            "model": "gemini-2.0-flash",
+            "content_length": 860,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 408,
+                "completion_tokens": 4,
+                "total_tokens": 412
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:46.793356",
+            "model": "gemini-2.0-flash",
+            "content_length": 4256,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 1336,
+                "completion_tokens": 4,
+                "total_tokens": 1340
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:47.222968",
+            "model": "gemini-2.0-flash",
+            "content_length": 157,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 228,
+                "completion_tokens": 4,
+                "total_tokens": 232
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:47.603830",
+            "model": "gemini-2.0-flash",
+            "content_length": 1860,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 650,
+                "completion_tokens": 4,
+                "total_tokens": 654
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:47.934573",
+            "model": "gemini-2.0-flash",
+            "content_length": 1018,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 449,
+                "completion_tokens": 4,
+                "total_tokens": 453
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:48.249758",
+            "model": "gemini-2.0-flash",
+            "content_length": 983,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 437,
+                "completion_tokens": 4,
+                "total_tokens": 441
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:48.677438",
+            "model": "gemini-2.0-flash",
+            "content_length": 6846,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 1863,
+                "completion_tokens": 4,
+                "total_tokens": 1867
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:49.023535",
+            "model": "gemini-2.0-flash",
+            "content_length": 774,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 403,
+                "completion_tokens": 4,
+                "total_tokens": 407
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:49.382405",
+            "model": "gemini-2.0-flash",
+            "content_length": 653,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 361,
+                "completion_tokens": 4,
+                "total_tokens": 365
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:49.724116",
+            "model": "gemini-2.0-flash",
+            "content_length": 791,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 408,
+                "completion_tokens": 4,
+                "total_tokens": 412
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:50.018061",
+            "model": "gemini-2.0-flash",
+            "content_length": 705,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 374,
+                "completion_tokens": 4,
+                "total_tokens": 378
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:50.395130",
+            "model": "gemini-2.0-flash",
+            "content_length": 512,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 340,
+                "completion_tokens": 4,
+                "total_tokens": 344
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:50.788085",
+            "model": "gemini-2.0-flash",
+            "content_length": 569,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 334,
+                "completion_tokens": 4,
+                "total_tokens": 338
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:51.194403",
+            "model": "gemini-2.0-flash",
+            "content_length": 3850,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 1240,
+                "completion_tokens": 4,
+                "total_tokens": 1244
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:51.543951",
+            "model": "gemini-2.0-flash",
+            "content_length": 1220,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 451,
+                "completion_tokens": 4,
+                "total_tokens": 455
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:51.945072",
+            "model": "gemini-2.0-flash",
+            "content_length": 330,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 277,
+                "completion_tokens": 4,
+                "total_tokens": 281
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:52.377591",
+            "model": "gemini-2.0-flash",
+            "content_length": 378,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 277,
+                "completion_tokens": 4,
+                "total_tokens": 281
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:52.740405",
+            "model": "gemini-2.0-flash",
+            "content_length": 1825,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 641,
+                "completion_tokens": 4,
+                "total_tokens": 645
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:53.098594",
+            "model": "gemini-2.0-flash",
+            "content_length": 456,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 306,
+                "completion_tokens": 4,
+                "total_tokens": 310
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:53.516089",
+            "model": "gemini-2.0-flash",
+            "content_length": 2187,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 669,
+                "completion_tokens": 4,
+                "total_tokens": 673
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:53.887862",
+            "model": "gemini-2.0-flash",
+            "content_length": 419,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 301,
+                "completion_tokens": 4,
+                "total_tokens": 305
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:54.339473",
+            "model": "gemini-2.0-flash",
+            "content_length": 1844,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 644,
+                "completion_tokens": 4,
+                "total_tokens": 648
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:54.790963",
+            "model": "gemini-2.0-flash",
+            "content_length": 5503,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 1437,
+                "completion_tokens": 4,
+                "total_tokens": 1441
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:55.224005",
+            "model": "gemini-2.0-flash",
+            "content_length": 252,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 263,
+                "completion_tokens": 4,
+                "total_tokens": 267
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:55.564311",
+            "model": "gemini-2.0-flash",
+            "content_length": 357,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 281,
+                "completion_tokens": 4,
+                "total_tokens": 285
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:55.847679",
+            "model": "gemini-2.0-flash",
+            "content_length": 210,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 246,
+                "completion_tokens": 4,
+                "total_tokens": 250
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:56.282177",
+            "model": "gemini-2.0-flash",
+            "content_length": 664,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 366,
+                "completion_tokens": 4,
+                "total_tokens": 370
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:56.665377",
+            "model": "gemini-2.0-flash",
+            "content_length": 249,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 229,
+                "completion_tokens": 4,
+                "total_tokens": 233
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:57.203640",
+            "model": "gemini-2.0-flash",
+            "content_length": 850,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 415,
+                "completion_tokens": 4,
+                "total_tokens": 419
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:57.570743",
+            "model": "gemini-2.0-flash",
+            "content_length": 2106,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 601,
+                "completion_tokens": 4,
+                "total_tokens": 605
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:57.992099",
+            "model": "gemini-2.0-flash",
+            "content_length": 1118,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 485,
+                "completion_tokens": 4,
+                "total_tokens": 489
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:58.383297",
+            "model": "gemini-2.0-flash",
+            "content_length": 1979,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 698,
+                "completion_tokens": 4,
+                "total_tokens": 702
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:58.755417",
+            "model": "gemini-2.0-flash",
+            "content_length": 1397,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 555,
+                "completion_tokens": 4,
+                "total_tokens": 559
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:59.103743",
+            "model": "gemini-2.0-flash",
+            "content_length": 1187,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 501,
+                "completion_tokens": 4,
+                "total_tokens": 505
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:59.424054",
+            "model": "gemini-2.0-flash",
+            "content_length": 963,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 459,
+                "completion_tokens": 4,
+                "total_tokens": 463
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:05:59.827505",
+            "model": "gemini-2.0-flash",
+            "content_length": 1763,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 798,
+                "completion_tokens": 4,
+                "total_tokens": 802
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:00.180068",
+            "model": "gemini-2.0-flash",
+            "content_length": 1048,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 476,
+                "completion_tokens": 4,
+                "total_tokens": 480
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:00.609287",
+            "model": "gemini-2.0-flash",
+            "content_length": 757,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 382,
+                "completion_tokens": 4,
+                "total_tokens": 386
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:00.999572",
+            "model": "gemini-2.0-flash",
+            "content_length": 1196,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 465,
+                "completion_tokens": 4,
+                "total_tokens": 469
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:01.441104",
+            "model": "gemini-2.0-flash",
+            "content_length": 1719,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 577,
+                "completion_tokens": 4,
+                "total_tokens": 581
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:01.927877",
+            "model": "gemini-2.0-flash",
+            "content_length": 2125,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 780,
+                "completion_tokens": 4,
+                "total_tokens": 784
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:02.273574",
+            "model": "gemini-2.0-flash",
+            "content_length": 885,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 435,
+                "completion_tokens": 4,
+                "total_tokens": 439
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:02.684583",
+            "model": "gemini-2.0-flash",
+            "content_length": 1005,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 441,
+                "completion_tokens": 4,
+                "total_tokens": 445
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:03.058839",
+            "model": "gemini-2.0-flash",
+            "content_length": 1360,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 509,
+                "completion_tokens": 4,
+                "total_tokens": 513
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:03.504503",
+            "model": "gemini-2.0-flash",
+            "content_length": 1516,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 569,
+                "completion_tokens": 4,
+                "total_tokens": 573
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:03.954387",
+            "model": "gemini-2.0-flash",
+            "content_length": 910,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 438,
+                "completion_tokens": 4,
+                "total_tokens": 442
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:04.318828",
+            "model": "gemini-2.0-flash",
+            "content_length": 1342,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 512,
+                "completion_tokens": 4,
+                "total_tokens": 516
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:04.711197",
+            "model": "gemini-2.0-flash",
+            "content_length": 1975,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 628,
+                "completion_tokens": 4,
+                "total_tokens": 632
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:05.077827",
+            "model": "gemini-2.0-flash",
+            "content_length": 3745,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 1021,
+                "completion_tokens": 4,
+                "total_tokens": 1025
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:05.550467",
+            "model": "gemini-2.0-flash",
+            "content_length": 212,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 251,
+                "completion_tokens": 4,
+                "total_tokens": 255
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:05.950071",
+            "model": "gemini-2.0-flash",
+            "content_length": 516,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 331,
+                "completion_tokens": 4,
+                "total_tokens": 335
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:06.471772",
+            "model": "gemini-2.0-flash",
+            "content_length": 7516,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 2104,
+                "completion_tokens": 4,
+                "total_tokens": 2108
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:06.816987",
+            "model": "gemini-2.0-flash",
+            "content_length": 835,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 429,
+                "completion_tokens": 4,
+                "total_tokens": 433
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:07.293353",
+            "model": "gemini-2.0-flash",
+            "content_length": 562,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 352,
+                "completion_tokens": 4,
+                "total_tokens": 356
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:07.699496",
+            "model": "gemini-2.0-flash",
+            "content_length": 1047,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 476,
+                "completion_tokens": 4,
+                "total_tokens": 480
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:08.081487",
+            "model": "gemini-2.0-flash",
+            "content_length": 233,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 255,
+                "completion_tokens": 4,
+                "total_tokens": 259
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:08.523219",
+            "model": "gemini-2.0-flash",
+            "content_length": 903,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 436,
+                "completion_tokens": 4,
+                "total_tokens": 440
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:08.907084",
+            "model": "gemini-2.0-flash",
+            "content_length": 727,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 443,
+                "completion_tokens": 4,
+                "total_tokens": 447
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:09.278454",
+            "model": "gemini-2.0-flash",
+            "content_length": 8669,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 2462,
+                "completion_tokens": 4,
+                "total_tokens": 2466
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:09.748069",
+            "model": "gemini-2.0-flash",
+            "content_length": 2341,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 830,
+                "completion_tokens": 4,
+                "total_tokens": 834
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:10.128804",
+            "model": "gemini-2.0-flash",
+            "content_length": 2065,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 707,
+                "completion_tokens": 4,
+                "total_tokens": 711
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:10.670363",
+            "model": "gemini-2.0-flash",
+            "content_length": 5526,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 1800,
+                "completion_tokens": 3,
+                "total_tokens": 1803
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:11.071370",
+            "model": "gemini-2.0-flash",
+            "content_length": 622,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 379,
+                "completion_tokens": 4,
+                "total_tokens": 383
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:11.486535",
+            "model": "gemini-2.0-flash",
+            "content_length": 3868,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 1165,
+                "completion_tokens": 4,
+                "total_tokens": 1169
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:11.886506",
+            "model": "gemini-2.0-flash",
+            "content_length": 1483,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 588,
+                "completion_tokens": 4,
+                "total_tokens": 592
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:12.319947",
+            "model": "gemini-2.0-flash",
+            "content_length": 418,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 306,
+                "completion_tokens": 4,
+                "total_tokens": 310
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:12.926310",
+            "model": "gemini-2.0-flash",
+            "content_length": 3888,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 1174,
+                "completion_tokens": 4,
+                "total_tokens": 1178
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:13.331608",
+            "model": "gemini-2.0-flash",
+            "content_length": 679,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 395,
+                "completion_tokens": 4,
+                "total_tokens": 399
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:13.927272",
+            "model": "gemini-2.0-flash",
+            "content_length": 7816,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 2250,
+                "completion_tokens": 3,
+                "total_tokens": 2253
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:14.356284",
+            "model": "gemini-2.0-flash",
+            "content_length": 676,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 390,
+                "completion_tokens": 4,
+                "total_tokens": 394
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:14.711858",
+            "model": "gemini-2.0-flash",
+            "content_length": 1129,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 496,
+                "completion_tokens": 4,
+                "total_tokens": 500
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:15.166839",
+            "model": "gemini-2.0-flash",
+            "content_length": 562,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 370,
+                "completion_tokens": 4,
+                "total_tokens": 374
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:15.578714",
+            "model": "gemini-2.0-flash",
+            "content_length": 405,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 324,
+                "completion_tokens": 4,
+                "total_tokens": 328
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:16.061294",
+            "model": "gemini-2.0-flash",
+            "content_length": 5920,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 1970,
+                "completion_tokens": 4,
+                "total_tokens": 1974
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:16.468432",
+            "model": "gemini-2.0-flash",
+            "content_length": 960,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 443,
+                "completion_tokens": 4,
+                "total_tokens": 447
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:16.905325",
+            "model": "gemini-2.0-flash",
+            "content_length": 210,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 249,
+                "completion_tokens": 4,
+                "total_tokens": 253
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:17.247774",
+            "model": "gemini-2.0-flash",
+            "content_length": 5417,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 1757,
+                "completion_tokens": 4,
+                "total_tokens": 1761
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:17.673925",
+            "model": "gemini-2.0-flash",
+            "content_length": 3911,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 1056,
+                "completion_tokens": 4,
+                "total_tokens": 1060
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:18.170472",
+            "model": "gemini-2.0-flash",
+            "content_length": 1015,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 453,
+                "completion_tokens": 4,
+                "total_tokens": 457
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:18.565849",
+            "model": "gemini-2.0-flash",
+            "content_length": 6255,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 1878,
+                "completion_tokens": 4,
+                "total_tokens": 1882
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:18.987270",
+            "model": "gemini-2.0-flash",
+            "content_length": 6500,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 2008,
+                "completion_tokens": 4,
+                "total_tokens": 2012
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:19.479745",
+            "model": "gemini-2.0-flash",
+            "content_length": 11670,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 3160,
+                "completion_tokens": 3,
+                "total_tokens": 3163
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:19.905139",
+            "model": "gemini-2.0-flash",
+            "content_length": 5894,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 1717,
+                "completion_tokens": 3,
+                "total_tokens": 1720
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:20.402719",
+            "model": "gemini-2.0-flash",
+            "content_length": 1793,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 627,
+                "completion_tokens": 4,
+                "total_tokens": 631
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:20.747517",
+            "model": "gemini-2.0-flash",
+            "content_length": 7351,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 2182,
+                "completion_tokens": 3,
+                "total_tokens": 2185
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:21.106158",
+            "model": "gemini-2.0-flash",
+            "content_length": 6745,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 2038,
+                "completion_tokens": 4,
+                "total_tokens": 2042
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:21.523216",
+            "model": "gemini-2.0-flash",
+            "content_length": 357,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 303,
+                "completion_tokens": 4,
+                "total_tokens": 307
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:22.028252",
+            "model": "gemini-2.0-flash",
+            "content_length": 292,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 277,
+                "completion_tokens": 4,
+                "total_tokens": 281
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:22.547361",
+            "model": "gemini-2.0-flash",
+            "content_length": 5359,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 1304,
+                "completion_tokens": 4,
+                "total_tokens": 1308
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:23.057919",
+            "model": "gemini-2.0-flash",
+            "content_length": 5359,
+            "instruction_length": 848,
+            "response_length": 19,
+            "usage": {
+                "prompt_tokens": 1304,
+                "completion_tokens": 4,
+                "total_tokens": 1308
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:23.444832",
+            "model": "gemini-2.0-flash",
+            "content_length": 322,
+            "instruction_length": 848,
+            "response_length": 25,
+            "usage": {
+                "prompt_tokens": 287,
+                "completion_tokens": 4,
+                "total_tokens": 291
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:23.855723",
+            "model": "gemini-2.0-flash",
+            "content_length": 503,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 353,
+                "completion_tokens": 4,
+                "total_tokens": 357
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:24.393272",
+            "model": "gemini-2.0-flash",
+            "content_length": 14660,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 3995,
+                "completion_tokens": 3,
+                "total_tokens": 3998
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:24.783563",
+            "model": "gemini-2.0-flash",
+            "content_length": 574,
+            "instruction_length": 848,
+            "response_length": 17,
+            "usage": {
+                "prompt_tokens": 351,
+                "completion_tokens": 4,
+                "total_tokens": 355
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:25.097021",
+            "model": "gemini-2.0-flash",
+            "content_length": 1206,
+            "instruction_length": 848,
+            "response_length": 20,
+            "usage": {
+                "prompt_tokens": 516,
+                "completion_tokens": 4,
+                "total_tokens": 520
+            }
+        },
+        {
+            "timestamp": "2025-05-02T21:06:25.621424",
+            "model": "gemini-2.0-flash",
+            "content_length": 9289,
+            "instruction_length": 848,
+            "response_length": 18,
+            "usage": {
+                "prompt_tokens": 2651,
+                "completion_tokens": 4,
+                "total_tokens": 2655
+            }
+        }
+    ],
+    "total_usage": {
+        "prompt_tokens": 106053,
+        "completion_tokens": 511,
+        "total_tokens": 106564,
+        "calls": 130
+    }
+}
